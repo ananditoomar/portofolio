@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Muhammad Omar Anandito</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050505;
+            color: #eee;
+            overflow-x: hidden;
+        }
+
+        /* ================= BACKGROUND ================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #39ff14;
+            filter: blur(220px);
+            opacity: 0.08;
+            top: -200px;
+            left: -150px;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            background: #8cff00;
+            filter: blur(220px);
+            opacity: 0.06;
+            bottom: -200px;
+            right: -150px;
+            pointer-events: none;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #111;
+        }
+
+        .logo {
+            color: #8cff00;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: #777;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #8cff00;
+        }
+
+        /* ================= GENERAL ================= */
+
+        section {
+            min-height: 100vh;
+            padding: 120px 7%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            color: #8cff00;
+            font-size: 12px;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+        }
+
+        .section-heading {
+            font-size: clamp(35px, 5vw, 55px);
+            margin-bottom: 40px;
+        }
+
+        /* ================= HERO ================= */
+
+        #home {
+            min-height: 100vh;
+        }
+
+        .hello {
+            color: #8cff00;
+            letter-spacing: 6px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .hero-line {
+            width: 80px;
+            height: 3px;
+            background: #8cff00;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px #8cff00;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 9vw, 110px);
+            line-height: 0.88;
+            letter-spacing: -5px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: #8cff00;
+            text-shadow:
+                0 0 10px #8cff00,
+                0 0 35px rgba(140, 255, 0, 0.35);
+        }
+
+        .hero p {
+            margin-top: 35px;
+            max-width: 600px;
+            color: #777;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 14px 25px;
+            border: 1px solid #8cff00;
+            color: #8cff00;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #8cff00;
+            color: #050505;
+            box-shadow: 0 0 30px rgba(140, 255, 0, 0.3);
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 80px;
+        }
+
+        .about-text {
+            color: #888;
+            line-height: 1.9;
+            font-size: 17px;
+        }
+
+        .info-box {
+            border-left: 2px solid #8cff00;
+            padding-left: 25px;
+        }
+
+        .info {
+            margin-bottom: 25px;
+        }
+
+        .info small {
+            color: #555;
+            letter-spacing: 2px;
+        }
+
+        .info p {
+            margin-top: 6px;
+            color: #ddd;
+        }
+
+        /* ================= LEARNING ================= */
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .learning-card {
+            padding: 30px;
+            border: 1px solid #171717;
+            background: #080808;
+            transition: 0.3s;
+        }
+
+        .learning-card:hover {
+            transform: translateY(-7px);
+            border-color: #8cff00;
+        }
+
+        .learning-card span {
+            color: #8cff00;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .learning-card h3 {
+            margin: 20px 0 12px;
+            font-size: 24px;
+        }
+
+        .learning-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ================= JOURNEY ================= */
+
+        .journey {
+            max-width: 750px;
+            border-left: 1px solid #222;
+        }
+
+        .journey-item {
+            position: relative;
+            padding: 0 0 45px 35px;
+        }
+
+        .journey-item::before {
+            content: "";
+            position: absolute;
+            left: -5px;
+            top: 5px;
+            width: 9px;
+            height: 9px;
+            background: #8cff00;
+            box-shadow: 0 0 12px #8cff00;
+        }
+
+        .journey-item small {
+            color: #8cff00;
+            letter-spacing: 2px;
+        }
+
+        .journey-item h3 {
+            margin: 10px 0;
+            font-size: 25px;
+        }
+
+        .journey-item p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ================= EXPERIMENTS ================= */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .project {
+            min-height: 240px;
+            padding: 30px;
+            background: #090909;
+            border: 1px solid #171717;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            border-color: #8cff00;
+            transform: translateY(-5px);
+        }
+
+        .project-number {
+            color: #8cff00;
+            font-size: 11px;
+            letter-spacing: 3px;
+        }
+
+        .project h3 {
+            margin-top: 25px;
+            font-size: 27px;
+        }
+
+        .project p {
+            margin-top: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ================= CONTACT ================= */
+
+        #contact {
+            min-height: 70vh;
+        }
+
+        .contact-box {
+            border: 1px solid #171717;
+            padding: 50px;
+            background: #080808;
+        }
+
+        .contact-box h2 {
+            font-size: clamp(35px, 6vw, 65px);
+            line-height: 1;
+        }
+
+        .contact-box h2 span {
+            color: #8cff00;
+        }
+
+        .contact-box p {
+            margin-top: 25px;
+            color: #666;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .contact-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #8cff00;
+            text-decoration: none;
+            border-bottom: 1px solid #8cff00;
+            padding-bottom: 5px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            padding: 30px 7%;
+            border-top: 1px solid #111;
+            color: #444;
+            font-size: 11px;
+            letter-spacing: 2px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 20px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 9px;
+            }
+
+            section {
+                padding: 110px 6%;
+            }
+
+            .about-content,
+            .learning-grid,
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 55px;
+            }
+
+            .contact-box {
+                padding: 30px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            MOA.
+        </div>
+
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#learning">LEARNING</a></li>
+            <li><a href="#journey">JOURNEY</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section id="home">
+
+        <div class="hero">
+
+            <div class="hello">
+                WELCOME TO MY WORLD
+            </div>
+
+            <div class="hero-line"></div>
+
+            <h1>
+                Muhammad<br>
+                Omar <span>Anandito.</span>
+            </h1>
+
+            <p>
+                A college student trying to figure things out,
+                learn new things, and build something along the way.
+            </p>
+
+            <a href="#about" class="button">
+                GET TO KNOW ME ↓
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about">
+
+        <div class="section-title">
+            01 — ABOUT ME
+        </div>
+
+        <h2 class="section-heading">
+            So, who am I?
+        </h2>
+
+        <div class="about-content">
+
+            <div class="about-text">
+
+                <p>
+                    Halo, gue Muhammad Omar Anandito.
+                    Saat ini gue adalah seorang mahasiswa
+                    yang masih belajar dan mencari tahu
+                    sebenarnya gue mau membawa diri gue
+                    ke arah mana.
+                </p>
+
+                <br>
+
+                <p>
+                    Gue belum punya banyak pengalaman,
+                    belum punya segudang achievement,
+                    dan masih banyak hal yang belum gue kuasai.
+                    Tapi gue percaya semuanya memang dimulai
+                    dari belum tahu apa-apa.
+                </p>
+
+                <br>
+
+                <p>
+                    Jadi website ini bukan tentang
+                    menunjukkan bahwa gue sudah jago.
+                    Ini tentang menunjukkan proses gue
+                    selama belajar dan berkembang.
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="info">
+                    <small>NAME</small>
+                    <p>Muhammad Omar Anandito</p>
+                </div>
+
+                <div class="info">
+                    <small>STATUS</small>
+                    <p>College Student</p>
+                </div>
+
+                <div class="info">
+                    <small>BASED IN</small>
+                    <p>Indonesia</p>
+                </div>
+
+                <div class="info">
+                    <small>CURRENT GOAL</small>
+                    <p>Keep learning & keep building.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= LEARNING ================= -->
+
+    <section id="learning">
+
+        <div class="section-title">
+            02 — CURRENTLY LEARNING
+        </div>
+
+        <h2 class="section-heading">
+            Still figuring things out.
+        </h2>
+
+        <div class="learning-grid">
+
+            <div class="learning-card">
+
+                <span>01</span>
+
+                <h3>Web Development</h3>
+
+                <p>
+                    Lagi belajar bagaimana website bekerja,
+                    mulai dari HTML, CSS, sampai hal-hal
+                    yang lebih kompleks.
+                </p>
+
+            </div>
+
+
+            <div class="learning-card">
+
+                <span>02</span>
+
+                <h3>Programming</h3>
+
+                <p>
+                    Masih eksplor berbagai konsep programming
+                    dan mencoba memahami cara berpikir
+                    seperti seorang programmer.
+                </p>
+
+            </div>
+
+
+            <div class="learning-card">
+
+                <span>03</span>
+
+                <h3>Database</h3>
+
+                <p>
+                    Belajar mengenai database dan SQL
+                    serta bagaimana data disimpan
+                    dan digunakan.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= JOURNEY ================= -->
+
+    <section id="journey">
+
+        <div class="section-title">
+            03 — MY JOURNEY
+        </div>
+
+        <h2 class="section-heading">
+            Nothing impressive. Yet.
+        </h2>
+
+        <div class="journey">
+
+            <div class="journey-item">
+
+                <small>NOW</small>
+
+                <h3>College Student</h3>
+
+                <p>
+                    Menjalani perkuliahan sambil mencoba
+                    menemukan bidang yang benar-benar ingin
+                    gue dalami.
+                </p>
+
+            </div>
+
+
+            <div class="journey-item">
+
+                <small>LEARNING</small>
+
+                <h3>Starting From Scratch</h3>
+
+                <p>
+                    Mulai mengenal lebih jauh tentang
+                    programming, web development,
+                    database, dan teknologi.
+                </p>
+
+            </div>
+
+
+            <div class="journey-item">
+
+                <small>NEXT</small>
+
+                <h3>Build Something Real</h3>
+
+                <p>
+                    Target berikutnya adalah berhenti
+                    cuma belajar teori dan mulai membuat
+                    sesuatu yang benar-benar bisa digunakan.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EXPERIMENTS ================= -->
+
+    <section id="projects">
+
+        <div class="section-title">
+            04 — EXPERIMENTS
+        </div>
+
+        <h2 class="section-heading">
+            Things I'm trying.
+        </h2>
+
+        <div class="projects">
+
+            <div class="project">
+
+                <div class="project-number">
+                    01 — PERSONAL
+                </div>
+
+                <h3>This Website</h3>
+
+                <p>
+                    Portfolio pribadi yang gue buat
+                    dari nol menggunakan HTML dan CSS.
+                    Anggap aja ini langkah pertama.
+                </p>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-number">
+                    02 — COLLEGE
+                </div>
+
+                <h3>College Assignments</h3>
+
+                <p>
+                    Berbagai tugas dan latihan dari
+                    perkuliahan yang membantu gue
+                    memahami hal-hal baru.
+                </p>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-number">
+                    03 — FUTURE
+                </div>
+
+                <h3>Something Better</h3>
+
+                <p>
+                    Belum tahu akan jadi apa.
+                    Tapi hopefully sesuatu yang
+                    lebih menarik dari ini.
+                </p>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-number">
+                    04 — FUTURE
+                </div>
+
+                <h3>Coming Soon</h3>
+
+                <p>
+                    This space is intentionally empty.
+                    Maybe I'll have something to put here someday.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section id="contact">
+
+        <div class="section-title">
+            05 — CONTACT
+        </div>
+
+        <div class="contact-box">
+
+            <h2>
+                Maybe we can<br>
+                make something <span>cool.</span>
+            </h2>
+
+            <p>
+                Kalau mau ngobrol, bertukar ide,
+                atau sekadar say hi, feel free to reach out.
+            </p>
+
+            <!-- GANTI EMAIL DI BAWAH -->
+
+            <a
+                href="mailto:anan@gmail.com"
+                class="contact-link"
+            >
+                ananditoomar@gmail.com →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div>
+            © 2026 MUHAMMAD OMAR ANANDITO
+        </div>
+
+        <div>
+            STILL LEARNING.
+        </div>
+
+    </footer>
+
+</body>
+</html
